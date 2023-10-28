@@ -6,8 +6,7 @@ private:
     double width;
 
 public:
-    Rectangle(double len, double wid) : length(len),
-        width(wid) {}
+    Rectangle(double len, double wid) : length(len), width(wid) {}
 
     double calculateArea() {
         return length * width;
@@ -21,7 +20,7 @@ public:
 int main() {
 
     double length, width;
-    std::cout << "Input the length of the rectangler: ";
+    std::cout << "Input the length of the rectangle: ";
     std::cin >> length;
     std::cout << "Input the width of the rectangle: ";
     std::cin >> width;
