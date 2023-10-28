@@ -1,26 +1,38 @@
 #include <iostream>
 #include <cmath>
+using namespace std;
+
+class rightTriangle {
+private:
+	double a;
+	double b;
+public:
+	rightTriangle(double len, double wid) : a(len), b(wid) {}
+
+	double calculateArea() {
+		return a * b / 2;
+	}
+
+	double calculateHypotenuse() {
+		return sqrt(pow(a, 2) + pow(b, 2));
+	}
+};
 
 int main()
 {
-	double a;
-	double b;
-	double c;
+	double a, b;
+	cout << "Length of A: ";
+	cin >> a;
+	cout << "Length of B: ";
+	cin >> b;
 
-	std::cout << "Enter the side of A: ";
-	std::cin >> a;
+	rightTriangle triangle(a, b);
 
-	std::cout << "Enter the size of B: ";
-	std::cin >> b;
+	double area = triangle.calculateArea();
+	cout << "\nArea: " << area << endl;
 
-	c = sqrt(pow(a, 2) + pow(b, 2));
-
-	float area;
-	area = a * b / 2;
-
-	std::cout << "\nArea of triangle is : " << area << std::endl;
-
-	std::cout << "Hypotenuse is: " << c << std::endl;
+	double hypotenuse = triangle.calculateHypotenuse();
+	cout << "Hypotenuse: " << hypotenuse << endl;
 
 	return 0;
 }

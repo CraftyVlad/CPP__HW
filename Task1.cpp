@@ -1,10 +1,10 @@
 #include <iostream>
+using namespace std;
 
 class Rectangle {
 private:
     double length;
     double width;
-
 public:
     Rectangle(double len, double wid) : length(len), width(wid) {}
 
@@ -20,18 +20,18 @@ public:
 int main() {
 
     double length, width;
-    std::cout << "Input the length of the rectangle: ";
-    std::cin >> length;
-    std::cout << "Input the width of the rectangle: ";
-    std::cin >> width;
+    cout << "Input the length of the rectangle: ";
+    cin >> length;
+    cout << "Input the width of the rectangle: ";
+    cin >> width;
 
     Rectangle rectangle(length, width);
 
     double area = rectangle.calculateArea();
-    std::cout << "\nArea: " << area << std::endl;
+    cout << "\nArea: " << area << endl;
 
     double perimeter = rectangle.calculatePerimeter();
-    std::cout << "Perimeter: " << perimeter << std::endl;
+    cout << "Perimeter: " << perimeter << endl;
 
     return 0;
 }
