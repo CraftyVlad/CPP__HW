@@ -1,26 +1,47 @@
 //#include <iostream>
-//#include <cmath>
+//using namespace std;
 //
-//int main()
-//{
-//	double a;
-//	double b;
-//	double c;
+//class Vehicle {
+//public:
+//    virtual void start() = 0;
+//    virtual void stop() = 0;
+//};
 //
-//	std::cout << "Enter the side of A: ";
-//	std::cin >> a;
+//class Car : public Vehicle {
+//public:
+//    void start() override {
+//        cout << "Starting the car" << endl;
+//    }
 //
-//	std::cout << "Enter the size of B: ";
-//	std::cin >> b;
+//    void stop() override {
+//        cout << "Stopping the car" << endl;
+//    }
+//};
 //
-//	c = sqrt(pow(a, 2) + pow(b, 2));
+//class Motorcycle : public Vehicle {
+//public:
+//    void start() override {
+//        cout << "Starting the motorcycle" << endl;
+//    }
 //
-//	float area;
-//	area = a * b / 2;
+//    void stop() override {
+//        cout << "Stopping the motorcycle" << endl;
+//    }
 //
-//	std::cout << "\nArea of triangle is : " << area << std::endl;
+//    void performStunts() {
+//        cout << "Performing stunts on the motorcycle" << endl;
+//    }
+//};
 //
-//	std::cout << "Hypotenuse is: " << c << std::endl;
+//int main() {
+//    Car car;
+//    car.start();
+//    car.stop();
 //
-//	return 0;
+//    Motorcycle motorcycle;
+//    motorcycle.start();
+//    motorcycle.performStunts();
+//    motorcycle.stop();
+//
+//    return 0;
 //}
