@@ -1,63 +1,110 @@
 #include <iostream>
 using namespace std;
 
-class MediaPlayer {
+class Number {
 public:
-    virtual void play() = 0;
-    virtual void pause() = 0;
-    virtual void stop() = 0;
+    virtual void add(Number* num) = 0;
+    virtual void subtract(Number* num) = 0;
+    virtual void multiply(Number* num) = 0;
+    virtual void divide(Number* num) = 0;
+    virtual void display() = 0;
 };
 
-class AudioPlayer : public MediaPlayer {
+class Integer : public Number {
+private:
+    int value;
 public:
-    void play() override {
-        cout << "Playing audio" << endl;
+    Integer(int val) : value(val) {}
+
+    void add(Number* num) override {
+        Integer* intNum = dynamic_cast<Integer*>(num);
+        if (intNum) {
+            value += intNum->value;
+        }
     }
 
-    void pause() override {
-        cout << "Pausing audio" << endl;
+    void subtract(Number* num) override {
+        Integer* intNum = dynamic_cast<Integer*>(num);
+        if (intNum) {
+            value -= intNum->value;
+        }
     }
 
-    void stop() override {
-        cout << "Stopping audio" << endl;
+    void multiply(Number* num) override {
+        Integer* intNum = dynamic_cast<Integer*>(num);
+        if (intNum) {
+            value *= intNum->value;
+        }
     }
 
-    void adjustVolume(int volume) {
-        cout << "Adjusting volume to " << volume << endl;
+    void divide(Number* num) override {
+        Integer* intNum = dynamic_cast<Integer*>(num);
+        if (intNum && intNum->value != 0) {
+            value /= intNum->value;
+        }
+    }
+
+    void display() override {
+        cout << "Integer value: " << value << endl;
     }
 };
 
-class VideoPlayer : public MediaPlayer {
+class Real : public Number {
+private:
+    double value;
 public:
-    void play() override {
-        cout << "Playing video" << endl;
+    Real(double val) : value(val) {}
+
+    void add(Number* num) override {
+        Real* realNum = dynamic_cast<Real*>(num);
+        if (realNum) {
+            value += realNum->value;
+        }
     }
 
-    void pause() override {
-        cout << "Pausing video" << endl;
+    void subtract(Number* num) override {
+        Real* realNum = dynamic_cast<Real*>(num);
+        if (realNum) {
+            value -= realNum->value;
+        }
     }
 
-    void stop() override {
-        cout << "Stopping video" << endl;
+    void multiply(Number* num) override {
+        Real* realNum = dynamic_cast<Real*>(num);
+        if (realNum) {
+            value *= realNum->value;
+        }
     }
 
-    void rewind() {
-        cout << "Rewinding video" << endl;
+    void divide(Number* num) override {
+        Real* realNum = dynamic_cast<Real*>(num);
+        if (realNum && realNum->value != 0) {
+            value /= realNum->value;
+        }
+    }
+
+    void display() override {
+        cout << "Real value: " << value << endl;
     }
 };
 
 int main() {
-    AudioPlayer audioPlayer;
-    audioPlayer.play();
-    audioPlayer.adjustVolume(50);
-    audioPlayer.pause();
-    audioPlayer.stop();
+    Number* num1 = new Integer(5);
+    Number* num2 = new Integer(3);
 
-    VideoPlayer videoPlayer;
-    videoPlayer.play();
-    videoPlayer.rewind();
-    videoPlayer.pause();
-    videoPlayer.stop();
+    num1->add(num2);
+    num1->display();
+
+    Number* num3 = new Real(5.5);
+    Number* num4 = new Real(2.2);
+
+    num3->multiply(num4);
+    num3->display();
+
+    delete num1;
+    delete num2;
+    delete num3;
+    delete num4;
 
     return 0;
 }
