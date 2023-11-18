@@ -1,110 +1,66 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
-class Number {
+class Wheel {
+private:
+	double diameter;
+	string tireType;
+
 public:
-    virtual void add(Number* num) = 0;
-    virtual void subtract(Number* num) = 0;
-    virtual void multiply(Number* num) = 0;
-    virtual void divide(Number* num) = 0;
-    virtual void display() = 0;
+	Wheel(double diameter, string tireType) : diameter(diameter), tireType(TireType) {}
+
+	void setDiameter(double diameter) {
+		this->diameter = diameter;
+	}
+	double getDiameter() {
+		return diameter;
+	}
+
+	void setTireType(string tireType) {
+		this->tireType = tireType;
+	}
+	double getTireType() {
+		return tireType;
+	};
 };
 
-class Integer : public Number {
+class Car {
 private:
-    int value;
+	Wheel* wheel5;
+
 public:
-    Integer(int val) : value(val) {}
+	Car(Wheel* frontLeft, Wheel* frontRight, Wheel* rearLeft, Wheel* rearRight) {
+		wheel1 = frontLeft;
+		wheel2 = frontRight;
+		wheel3 = rearLeft;
+		wheel4 = rearRight;
+	};
 
-    void add(Number* num) override {
-        Integer* intNum = dynamic_cast<Integer*>(num);
-        if (intNum) {
-            value += intNum->value;
-        }
-    }
+	void move() {
+		cout << "Car is moving using " << wheel1->getTireType() << " tires" << endl;
+	}
 
-    void subtract(Number* num) override {
-        Integer* intNum = dynamic_cast<Integer*>(num);
-        if (intNum) {
-            value -= intNum->value;
-        }
-    }
-
-    void multiply(Number* num) override {
-        Integer* intNum = dynamic_cast<Integer*>(num);
-        if (intNum) {
-            value *= intNum->value;
-        }
-    }
-
-    void divide(Number* num) override {
-        Integer* intNum = dynamic_cast<Integer*>(num);
-        if (intNum && intNum->value != 0) {
-            value /= intNum->value;
-        }
-    }
-
-    void display() override {
-        cout << "Integer value: " << value << endl;
-    }
-};
-
-class Real : public Number {
-private:
-    double value;
-public:
-    Real(double val) : value(val) {}
-
-    void add(Number* num) override {
-        Real* realNum = dynamic_cast<Real*>(num);
-        if (realNum) {
-            value += realNum->value;
-        }
-    }
-
-    void subtract(Number* num) override {
-        Real* realNum = dynamic_cast<Real*>(num);
-        if (realNum) {
-            value -= realNum->value;
-        }
-    }
-
-    void multiply(Number* num) override {
-        Real* realNum = dynamic_cast<Real*>(num);
-        if (realNum) {
-            value *= realNum->value;
-        }
-    }
-
-    void divide(Number* num) override {
-        Real* realNum = dynamic_cast<Real*>(num);
-        if (realNum && realNum->value != 0) {
-            value /= realNum->value;
-        }
-    }
-
-    void display() override {
-        cout << "Real value: " << value << endl;
-    }
+	void stop() {
+		cout << "Car has stopped" << endl;
+	}
 };
 
 int main() {
-    Number* num1 = new Integer(5);
-    Number* num2 = new Integer(3);
+	Wheel* frontLeft = new Wheel(18, "all-season");
+	Wheel* frontRight = new Wheel(18, "all-season");
+	Wheel* rearLeft = new Wheel(18, "all-season");
+	Wheel* rearRight = new Wheel(18, "all-season");
 
-    num1->add(num2);
-    num1->display();
+	Car car(frontLeft, frontRight, rearLeft, rearRight);
 
-    Number* num3 = new Real(5.5);
-    Number* num4 = new Real(2.2);
+	car.move();
+	car.stop();
 
-    num3->multiply(num4);
-    num3->display();
+	delete frontLeft;
+	delete frontRight;
+	delete rearLeft;
+	delete rearRight;
 
-    delete num1;
-    delete num2;
-    delete num3;
-    delete num4;
-
-    return 0;
+	return 0;
 }
