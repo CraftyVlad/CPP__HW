@@ -23,7 +23,6 @@ public:
 	double getTireType() {
 		return tireType;
 	};
-};
 
 class Car {
 private:
