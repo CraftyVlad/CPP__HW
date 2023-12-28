@@ -1,34 +1,69 @@
 ﻿#include <iostream>
+#include <cstdlib>
+#include <ctime>
 
-void insertBlock(int arr[], int size, int index, int block[], int blockSize) {
-    for (int i = size - 1; i >= index + blockSize; i--) {
-        arr[i] = arr[i - blockSize];
+using namespace std;
+
+int main()
+{
+    srand(time(NULL));
+
+    int rows, cols;
+    cout << "Enter number of rows: ";
+    cin >> rows;
+    cout << "Enter number of columns: ";
+    cin >> cols;
+
+    int** arr1 = new int* [rows];
+    int** arr2 = new int* [rows];
+    int** result = new int* [rows];
+
+    for (int i = 0; i < rows; i++) {
+        arr1[i] = new int[cols];
+        arr2[i] = new int[cols];
+        result[i] = new int[cols];
     }
 
-    for (int i = 0; i < blockSize; i++) {
-        arr[index + i] = block[i];
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            arr1[i][j] = rand() % 10;
+            arr2[i][j] = rand() % 10;
+            cout << arr1[i][j] << " ";
+        }
+        cout << endl;
     }
-}
 
-void appendBlock(int arr[], int size, int block[], int blockSize) {
-    for (int i = 0; i < blockSize; i++) {
-        arr[size + i] = block[i];
+    cout << endl;
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            cout << arr2[i][j] << " ";
+        }
+        cout << endl;
     }
-}
 
-int main() {
-    const int SIZE = 10;
-    int arr[SIZE] = { 1, 2, 3, 4, 5 };
-    int block1[] = { 6, 7, 8 };
-    int block2[] = { 9, 10 };
-
-    insertBlock(arr, SIZE, 2, block1, 3);
-
-    appendBlock(arr, SIZE + 3, block2, 2);
-
-    for (int i = 0; i < SIZE + 5; i++) {
-        std::cout << arr[i] << " ";
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            result[i][j] = arr1[i][j] + arr2[i][j];
+        }
     }
+
+    cout << endl;
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            cout << result[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    for (int i = 0; i < rows; i++) {
+        delete[] arr1[i];
+        delete[] arr2[i];
+        delete[] result[i];
+    }
+    delete[] arr1;
+    delete[] arr2;
+    delete[] result;
 
     return 0;
 }
